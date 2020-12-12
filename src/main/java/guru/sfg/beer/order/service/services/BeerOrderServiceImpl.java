@@ -25,6 +25,7 @@ import guru.sfg.beer.order.service.repositories.CustomerRepository;
 import guru.sfg.beer.order.service.web.mappers.BeerOrderMapper;
 import guru.sfg.brewery.model.BeerOrderDto;
 import guru.sfg.brewery.model.BeerOrderPagedList;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
@@ -38,22 +39,24 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Slf4j
+@RequiredArgsConstructor
 @Service
 public class BeerOrderServiceImpl implements BeerOrderService {
+
 
     private final BeerOrderRepository beerOrderRepository;
     private final CustomerRepository customerRepository;
     private final BeerOrderMapper beerOrderMapper;
     private final ApplicationEventPublisher publisher;
 
-    public BeerOrderServiceImpl(BeerOrderRepository beerOrderRepository,
-                                CustomerRepository customerRepository,
-                                BeerOrderMapper beerOrderMapper, ApplicationEventPublisher publisher) {
-        this.beerOrderRepository = beerOrderRepository;
-        this.customerRepository = customerRepository;
-        this.beerOrderMapper = beerOrderMapper;
-        this.publisher = publisher;
-    }
+//    public BeerOrderServiceImpl(BeerOrderRepository beerOrderRepository,
+//                                CustomerRepository customerRepository,
+//                                BeerOrderMapper beerOrderMapper, ApplicationEventPublisher publisher) {
+//        this.beerOrderRepository = beerOrderRepository;
+//        this.customerRepository = customerRepository;
+//        this.beerOrderMapper = beerOrderMapper;
+//        this.publisher = publisher;
+//    }
 
     @Override
     public BeerOrderPagedList listOrders(UUID customerId, Pageable pageable) {
