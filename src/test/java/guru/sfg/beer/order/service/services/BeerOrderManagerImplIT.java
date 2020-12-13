@@ -35,6 +35,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @ExtendWith(WireMockExtension.class)
 @SpringBootTest
 public class BeerOrderManagerImplIT {
+
     @Autowired
     BeerOrderManager beerOrderManager;
 
@@ -58,7 +59,7 @@ public class BeerOrderManagerImplIT {
     static class RestTemplateBuilderProvider {
 
         @Bean(destroyMethod = "stop")
-        public WireMockServer wireMockServer() {
+        public WireMockServer wireMockServer(){
             WireMockServer server = with(wireMockConfig().port(8083));
             server.start();
             return server;
@@ -66,17 +67,15 @@ public class BeerOrderManagerImplIT {
 
     }
 
-
-    @BeforeEach()
+    @BeforeEach
     void setUp() {
         testCustomer = customerRepository.save(Customer.builder()
-                .customerName("Test customer")
+                .customerName("Test Customer")
                 .build());
     }
 
     @Test
     void testNewToAllocated() throws JsonProcessingException, InterruptedException {
-
         BeerDto beerDto = BeerDto.builder().id(beerId).upc("12345").build();
 
         wireMockServer.stubFor(WireMock.get(BeerServiceImpl.BEER_UPC_PATH_V1 + "12345")
@@ -86,7 +85,7 @@ public class BeerOrderManagerImplIT {
 
         BeerOrder savedBeerOrder = beerOrderManager.newBeerOrder(beerOrder);
 
-        await().untilAsserted(() ->{
+        await().untilAsserted(() -> {
             BeerOrder foundOrder = beerOrderRepository.findById(beerOrder.getId()).get();
 
             assertEquals(BeerOrderStatusEnum.ALLOCATED, foundOrder.getOrderStatus());
@@ -98,7 +97,6 @@ public class BeerOrderManagerImplIT {
             assertEquals(line.getOrderQuantity(), line.getQuantityAllocated());
         });
 
-
         BeerOrder savedBeerOrder2 = beerOrderRepository.findById(savedBeerOrder.getId()).get();
 
         assertNotNull(savedBeerOrder2);
@@ -108,8 +106,7 @@ public class BeerOrderManagerImplIT {
         });
     }
 
-
-    public BeerOrder createBeerOrder() {
+    public BeerOrder createBeerOrder(){
         BeerOrder beerOrder = BeerOrder.builder()
                 .customer(testCustomer)
                 .build();
@@ -117,8 +114,8 @@ public class BeerOrderManagerImplIT {
         Set<BeerOrderLine> lines = new HashSet<>();
         lines.add(BeerOrderLine.builder()
                 .beerId(beerId)
-                .orderQuantity(1)
                 .upc("12345")
+                .orderQuantity(1)
                 .beerOrder(beerOrder)
                 .build());
 
@@ -126,5 +123,4 @@ public class BeerOrderManagerImplIT {
 
         return beerOrder;
     }
-
 }
