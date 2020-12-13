@@ -24,9 +24,9 @@ public class BeerPagedList extends PageImpl<BeerDto> implements Serializable {
                          @JsonProperty("totalPages") int totalPages,
                          @JsonProperty("sort") JsonNode sort,
                          @JsonProperty("first") boolean first,
-                         @JsonProperty("numberOfElements") int numberOfElements
-                         ) {
-        super(content, PageRequest.of(number,size), totalElements);
+                         @JsonProperty("numberOfElements") int numberOfElements) {
+
+        super(content, PageRequest.of(number, size), totalElements);
     }
 
     public BeerPagedList(List<BeerDto> content, Pageable pageable, long total) {

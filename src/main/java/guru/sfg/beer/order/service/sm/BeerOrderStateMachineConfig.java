@@ -12,13 +12,13 @@ import org.springframework.statemachine.config.builders.StateMachineTransitionCo
 
 import java.util.EnumSet;
 
-@Configuration
 @RequiredArgsConstructor
+@Configuration
 @EnableStateMachineFactory
 public class BeerOrderStateMachineConfig extends StateMachineConfigurerAdapter<BeerOrderStatusEnum, BeerOrderEventEnum> {
 
-    private final Action<BeerOrderStatusEnum, BeerOrderEventEnum> validateOrderAction;
-    private final Action<BeerOrderStatusEnum, BeerOrderEventEnum> allocateOrderAction;
+    private final Action<BeerOrderStatusEnum, BeerOrderEventEnum>  validateOrderAction;
+    private final Action<BeerOrderStatusEnum, BeerOrderEventEnum>  allocateOrderAction;
 
 
     @Override
@@ -31,7 +31,6 @@ public class BeerOrderStateMachineConfig extends StateMachineConfigurerAdapter<B
                 .end(BeerOrderStatusEnum.DELIVERY_EXCEPTION)
                 .end(BeerOrderStatusEnum.VALIDATION_EXCEPTION)
                 .end(BeerOrderStatusEnum.ALLOCATION_EXCEPTION);
-
     }
 
     @Override

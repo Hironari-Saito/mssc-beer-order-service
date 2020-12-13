@@ -1,4 +1,4 @@
-package guru.sfg.brewery.model.event;
+package guru.sfg.brewery.model.events;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +12,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class ValidateOrderResult {
-
     private UUID orderId;
     private Boolean isValid;
 }

@@ -11,8 +11,8 @@ import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class BeerDto {
 

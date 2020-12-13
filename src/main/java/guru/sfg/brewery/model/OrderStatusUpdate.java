@@ -46,6 +46,7 @@ public class OrderStatusUpdate  {
     @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ssZ", shape=JsonFormat.Shape.STRING)
     @JsonProperty("lastModifiedDate")
     private OffsetDateTime lastModifiedDate = null;
+
     private UUID orderId;
     private String customerRef;
     private String orderStatus;

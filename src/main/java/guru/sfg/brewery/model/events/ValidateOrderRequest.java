@@ -1,4 +1,4 @@
-package guru.sfg.brewery.model.event;
+package guru.sfg.brewery.model.events;
 
 
 import guru.sfg.brewery.model.BeerOrderDto;
@@ -13,5 +13,5 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ValidateOrderRequest {
 
-    private BeerOrderDto beerOrderDto;
+    private BeerOrderDto beerOrder;
 }
